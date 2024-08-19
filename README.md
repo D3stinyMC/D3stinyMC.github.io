@@ -1,1 +1,1 @@
-# D3stinyMC.github.io
+# D3stinyMC
