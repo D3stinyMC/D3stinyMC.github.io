@@ -1,20 +1,18 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <title>Redirecting</title>
   </head>
-  <body>
+  <body onload="handleFormSubmit()">
     <h1 style="text-align:center;">REDIRECTING...</h1>
 
     <script>
-        // Handle form submission
+        // Redirect after a short delay
         function handleFormSubmit() {
             // Wait for 2 seconds (2000 milliseconds) before redirecting
             setTimeout(function() {
                 window.location.href = "https://d3stinymc.github.io/home";
-            }, 1);
-            return false; // Prevent the default form submission
+            }, 2000); // Delay set to 2 seconds
         }
     </script>
   </body>
