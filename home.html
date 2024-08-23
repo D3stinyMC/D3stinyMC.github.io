@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8195913285668646"
-     crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8195913285668646" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>D3stinyMC</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <style>
         body {
             margin: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
             font-family: Verdana, sans-serif; /* Use a consistent font */
+            background-color: #302E2E; /* Background color of the body */
         }
 
-        .center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* Space between logo and text */
+        }
+
+        .logo {
+            width: 80px; /* Adjust size as needed */
+            height: auto;
         }
 
         .thumbnail-container {
             display: flex;
             flex-direction: column;
-            padding: 10px;
+            padding: 60px 10px 10px; /* Adjust padding-top based on the height of the top bar */
             overflow-y: auto; /* Enable vertical scrolling */
             max-height: 100vh; /* Limit the height to viewport height */
         }
@@ -54,8 +72,8 @@
 
         /* Mobile Styles */
         @media (max-width: 768px) {
-            .center {
-                width: 90%; /* Adjust logo size for smaller screens */
+            .logo {
+                width: 60px; /* Adjust logo size for smaller screens */
             }
 
             .thumbnail-box {
@@ -73,13 +91,13 @@
             }
         }
     </style>
-    <title>D3stinyMC</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
-<body style="background-color:#302E2E;">
+<body>
 
-    <img src="logo.png" class="center" style="width:80%; max-width: 457px; height:auto;">
-    <p style="text-align:center;color:white;">Welcome to my website!</p>
+    <div class="top-bar">
+        <img src="logo.png" class="logo" alt="Logo">
+        <p>Fixed Top Bar</p>
+    </div>
 
     <div class="thumbnail-container">
         <div class="thumbnail-box" onclick="window.location.href='https://mediafire.com'">
