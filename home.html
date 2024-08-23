@@ -1,26 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8195913285668646"
      crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-      .center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-      }
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .thumbnail-box {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px auto;
+            cursor: pointer;
+        }
+
+        .thumbnail {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .thumbnail-text {
+            color: white;
+            font-family: verdana;
+            font-size: 120%;
+            margin-top: 10px;
+            text-decoration: underline;
+        }
+
+        .thumbnail-box:hover .thumbnail-text {
+            color: #FFD700; /* Change color on hover */
+        }
     </style>
     <title>D3stinyMC</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  </head>
-  <body style="background-color:#302E2E;">
+</head>
+<body style="background-color:#302E2E;">
 
     <img src="logo.png" class="center" style="width:457px;height:77px;">
     <p style="font-family:verdana;text-align:center;color:white;font-size:190%">Welcome to my website!</p>
 
-    <div align="left">
-
+    <div class="thumbnail-box" onclick="window.location.href='https://mediafire.com'">
+        <img src="thumbnail_0.png" alt="Big Case" class="thumbnail">
+        <p class="thumbnail-text">BIG CASE</p>
     </div>
-  </body>
+
+</body>
 </html>
