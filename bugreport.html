@@ -161,10 +161,9 @@
             const webhookURL = 'https://discord.com/api/webhooks/1276381092768907284/LVSQ300teaTtK5Kk_HCow4PR0e0zHR_OlemoTrEmq_nlT_o1ROismSbK7AioSTZpO80H'; // Replace with your Discord webhook URL
             const formData = new FormData(this);
             const data = {
-                username: formData.get('name'),
-                content: `**Bug Report**\n**Name:** ${formData.get('name')}\n**Email:** ${formData.get('email')}\n**Description:** ${formData.get('description')}`
+                content: `**Bug Report**\n**Name:** ${formData.get('name')}\n**Email:** ${formData.get('email')}\n**Description:**\n${formData.get('description')}`
             };
-            
+
             fetch(webhookURL, {
                 method: 'POST',
                 headers: {
@@ -172,14 +171,18 @@
                 },
                 body: JSON.stringify(data),
             })
-            .then(response => response.json())
-            .then(data => {
-                // Store today's date in local storage
-                const today = new Date().toISOString().split('T')[0];
-                localStorage.setItem('lastSubmissionDate', today);
+            .then(response => {
+                if (response.ok) {
+                    // Store today's date in local storage
+                    const today = new Date().toISOString().split('T')[0];
+                    localStorage.setItem('lastSubmissionDate', today);
 
-                messageDiv.textContent = 'Thank you for reporting!';
-                form.style.display = 'none';
+                    messageDiv.textContent = 'Thank you for reporting!';
+                    form.style.display = 'none';
+                } else {
+                    alert('Error submitting bug report.');
+                    console.error('Error:', response.statusText);
+                }
             })
             .catch((error) => {
                 alert('Error submitting bug report.');
