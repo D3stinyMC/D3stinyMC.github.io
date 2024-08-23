@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a Bug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #302E2E;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #444;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 0;
+            color: #fff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #666;
+            border-radius: 4px;
+            background: #333;
+            color: #fff;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .g-recaptcha {
+            margin-bottom: 15px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #fff;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            button {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+            .message {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            input, textarea, button {
+                font-size: 14px;
+                padding: 8px;
+            }
+            .message {
+                font-size: 14px;
+            }
+        }
+    </style>
+    <!-- Load reCAPTCHA API -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Report a Bug</h1>
+        <form id="bug-report-form">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Bug Description:</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="6Lck0isqAAAAAMb866nGwrZZcZWGMNdky2Lhgpnw"></div> <!-- Replace with your Site Key -->
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit Report</button>
+            </div>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('bug-report-form');
+        const messageDiv = document.getElementById('message');
+
+        // Check if the user has submitted the form today
+        function checkSubmission() {
+            const lastSubmissionDate = localStorage.getItem('lastSubmissionDate');
+            if (lastSubmissionDate) {
+                const today = new Date().toISOString().split('T')[0];
+                if (lastSubmissionDate === today) {
+                    form.style.display = 'none';
+                    messageDiv.textContent = 'Come back next day!';
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Handle form submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Verify reCAPTCHA
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (recaptchaResponse.length === 0) {
+                alert('Please complete the reCAPTCHA.');
+                return;
+            }
+
+            const webhookURL = 'https://discord.com/api/webhooks/1276381092768907284/LVSQ300teaTtK5Kk_HCow4PR0e0zHR_OlemoTrEmq_nlT_o1ROismSbK7AioSTZpO80H'; // Replace with your Discord webhook URL
+            const formData = new FormData(this);
+            const data = {
+                username: formData.get('name'),
+                content: `**Bug Report**\n**Name:** ${formData.get('name')}\n**Email:** ${formData.get('email')}\n**Description:** ${formData.get('description')}`
+            };
+            
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Store today's date in local storage
+                const today = new Date().toISOString().split('T')[0];
+                localStorage.setItem('lastSubmissionDate', today);
+
+                messageDiv.textContent = 'Thank you for reporting!';
+                form.style.display = 'none';
+            })
+            .catch((error) => {
+                alert('Error submitting bug report.');
+                console.error('Error:', error);
+            });
+        });
+
+        // Initialize
+        if (!checkSubmission()) {
+            form.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
