@@ -11,8 +11,17 @@
             margin-right: auto;
         }
 
+        .thumbnail-container {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            max-height: 100vh; /* Limit height to viewport height */
+            padding: 10px;
+        }
+
         .thumbnail-box {
-            width: 300px;
+            width: 80%; /* Make the width responsive */
+            max-width: 300px; /* Maximum width for larger screens */
             padding: 10px;
             border: 1px solid #fff;
             border-radius: 15px;
@@ -37,6 +46,18 @@
         .thumbnail-box:hover .thumbnail-text {
             color: #a3ff87; /* Change color on hover */
         }
+
+        @media (min-width: 600px) {
+            .thumbnail-box {
+                width: 50%; /* Increase width for larger screens */
+            }
+        }
+        
+        @media (min-width: 900px) {
+            .thumbnail-box {
+                width: 40%; /* Further increase width for larger screens */
+            }
+        }
     </style>
     <title>D3stinyMC</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -46,9 +67,17 @@
     <img src="logo.png" class="center" style="width:457px;height:77px;">
     <p style="font-family:verdana;text-align:center;color:white;font-size:190%">Welcome to my website!</p>
 
-    <div class="thumbnail-box" onclick="window.location.href='https://mediafire.com'">
-        <img src="thumbnail_0.png" alt="Big Case" class="thumbnail">
-        <p class="thumbnail-text">BIG CASE: Chapter 1</p>
+    <div class="thumbnail-container">
+        <div class="thumbnail-box" onclick="window.location.href='https://mediafire.com'">
+            <img src="thumbnail_0.png" alt="Big Case" class="thumbnail">
+            <p class="thumbnail-text">BIG CASE: Chapter 1</p>
+        </div>
+
+        <!-- Additional thumbnail-boxes can be added here -->
+        <div class="thumbnail-box" onclick="window.location.href='https://example.com'">
+            <img src="thumbnail_1.png" alt="Another Case" class="thumbnail">
+            <p class="thumbnail-text">Another Case: Chapter 2</p>
+        </div>
     </div>
 
 </body>
