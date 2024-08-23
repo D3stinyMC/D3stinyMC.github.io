@@ -3,46 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Experience Code Selector</title>
+    <title>Lua Code Tester</title>
     <style>
         body {
             font-family: Arial, sans-serif;
         }
-        #codeDisplay {
-            border: 1px solid #ddd;
-            padding: 10px;
+        #codeInput, #codeOutput {
+            width: 100%;
+            height: 200px;
             margin-top: 10px;
-            white-space: pre-wrap;
+            padding: 10px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+        #executeButton {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Select a Roblox Experience</h1>
-    <select id="experienceSelect">
-        <option value="">Select an experience</option>
-        <option value="experience1">Experience 1</option>
-        <option value="experience2">Experience 2</option>
-        <option value="experience3">Experience 3</option>
-    </select>
-
-    <div id="codeDisplay">
-        <!-- Code will be displayed here -->
-    </div>
+    <h1>Lua Code Tester</h1>
+    <textarea id="codeInput" placeholder="Enter your Lua code here..."></textarea>
+    <button id="executeButton">Execute</button>
+    <div id="codeOutput"></div>
 
     <script>
-        const experienceCodes = {
-            experience1: `// Code for Experience 1
-console.log('This is Experience 1 code');`,
-            experience2: `// Code for Experience 2
-console.log('This is Experience 2 code');`,
-            experience3: `// Code for Experience 3
-console.log('This is Experience 3 code');`
-        };
-
-        document.getElementById('experienceSelect').addEventListener('change', function() {
-            const selectedExperience = this.value;
-            const codeDisplay = document.getElementById('codeDisplay');
-            codeDisplay.textContent = experienceCodes[selectedExperience] || 'Select an experience to see the code.';
+        document.getElementById('executeButton').addEventListener('click', function() {
+            const code = document.getElementById('codeInput').value;
+            // This is a placeholder. Code execution cannot happen in the browser for Roblox.
+            document.getElementById('codeOutput').textContent = `Your code:\n${code}\n\nNote: This is a simulation. Code execution requires Roblox Studio.`;
         });
     </script>
 </body>
