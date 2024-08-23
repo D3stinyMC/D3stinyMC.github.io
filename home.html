@@ -5,6 +5,11 @@
      crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <style>
+        body {
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
         .center {
             display: block;
             margin-left: auto;
@@ -14,8 +19,6 @@
         .thumbnail-container {
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
-            max-height: 100vh; /* Limit height to viewport height */
             padding: 10px;
         }
 
@@ -47,17 +50,15 @@
             color: #a3ff87; /* Change color on hover */
         }
 
-        @media (min-width: 600px) {
-            .thumbnail-box {
-                width: 50%; /* Increase width for larger screens */
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .thumbnail-container {
+                overflow-y: auto; /* Enable vertical scrolling on mobile */
+                max-height: 100vh; /* Limit the height to viewport height */
             }
         }
-        
-        @media (min-width: 900px) {
-            .thumbnail-box {
-                width: 40%; /* Further increase width for larger screens */
-            }
-        }
+
+        /* PC Styles (No need to specify overflow here, default is no horizontal scrolling) */
     </style>
     <title>D3stinyMC</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
