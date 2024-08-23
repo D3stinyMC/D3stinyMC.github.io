@@ -8,6 +8,7 @@
         body {
             margin: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
+            font-family: Verdana, sans-serif; /* Use a consistent font */
         }
 
         .center {
@@ -20,16 +21,18 @@
             display: flex;
             flex-direction: column;
             padding: 10px;
+            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: 100vh; /* Limit the height to viewport height */
         }
 
         .thumbnail-box {
-            width: 80%; /* Make the width responsive */
+            width: 90%; /* Adjust width for responsiveness */
             max-width: 300px; /* Maximum width for larger screens */
             padding: 10px;
             border: 1px solid #fff;
             border-radius: 15px;
             text-align: center;
-            margin: 20px auto;
+            margin: 10px auto; /* Adjust margins for better spacing */
             cursor: pointer;
         }
 
@@ -40,8 +43,7 @@
 
         .thumbnail-text {
             color: white;
-            font-family: verdana;
-            font-size: 120%;
+            font-size: 16px; /* Adjust font size for better readability on mobile */
             margin-top: 10px;
             text-decoration: underline;
         }
@@ -52,21 +54,32 @@
 
         /* Mobile Styles */
         @media (max-width: 768px) {
-            .thumbnail-container {
-                overflow-y: auto; /* Enable vertical scrolling on mobile */
-                max-height: 100vh; /* Limit the height to viewport height */
+            .center {
+                width: 90%; /* Adjust logo size for smaller screens */
+            }
+
+            .thumbnail-box {
+                width: 100%; /* Full width for thumbnail boxes on mobile */
+                max-width: none; /* Remove max-width constraint */
+            }
+
+            .thumbnail-text {
+                font-size: 14px; /* Adjust font size for mobile readability */
+            }
+
+            p {
+                font-size: 18px; /* Adjust text size for mobile */
+                margin: 10px 0; /* Add vertical margin for spacing */
             }
         }
-
-        /* PC Styles (No need to specify overflow here, default is no horizontal scrolling) */
     </style>
     <title>D3stinyMC</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body style="background-color:#302E2E;">
 
-    <img src="logo.png" class="center" style="width:457px;height:77px;">
-    <p style="font-family:verdana;text-align:center;color:white;font-size:190%">Welcome to my website!</p>
+    <img src="logo.png" class="center" style="width:80%; max-width: 457px; height:auto;">
+    <p style="text-align:center;color:white;">Welcome to my website!</p>
 
     <div class="thumbnail-container">
         <div class="thumbnail-box" onclick="window.location.href='https://mediafire.com'">
